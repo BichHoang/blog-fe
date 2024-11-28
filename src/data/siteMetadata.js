@@ -1,10 +1,10 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Foundation Blog',
+  title: 'Visa từ A tới Z',
   author: 'A.B Team',
-  headerTitle: 'Foundation Blog',
-  description: 'A blog created with ReactJs and Tailwind.css',
-  language: 'en-us',
+  headerTitle: 'Visa từ A tới Z',
+  description: 'Nơi chia sẻ kiến thức, kinh nghiệm xin Visa giúp bạn dễ dàng tự xin được Visa',
+  language: 'vi',
   theme: 'light', // system, dark or light
   siteUrl: '#',
   siteRepo: '#',

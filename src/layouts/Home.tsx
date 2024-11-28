@@ -1,52 +1,13 @@
 import { Tag, NewsletterSubscribe, Header, Footer, Pagination } from '../components';
 import siteMetadata from '../data/siteMetadata';
 import { useState, useEffect } from 'react';
-import { map, isEmpty } from 'lodash';
 import {
   getRequest,
-  createRequest,
-  updateRequest,
-  deleteRequest,
-  convertKeysToSnakeCase,
+  formatDate,
 } from '../utils/index';
+import { Post, HomeProps, PaginationMeta } from '../types/interfaces';
 
-const MAX_DISPLAY = 5;
-
-// Mock function for date formatting
-const formatDate = (date: string, locale: string): string => {
-  return new Date(date).toLocaleDateString(locale, {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  });
-};
-
-interface Post {
-  id: number;
-  slug: string;
-  date: string;
-  title: string;
-  description: string;
-  publishedAt: string;
-  tags: string[];
-}
-
-interface HomeProps {
-  posts: Post[];
-}
-
-interface PaginationMeta {
-  current_page: number;
-  total_pages: number;
-  per_page: number;
-  total_count: number;
-}
-
-const Home: React.FC<HomeProps> = ({ posts }) => {
+const Home: React.FC<HomeProps> = () => {
   const [data, setData] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -89,7 +50,7 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
         <div className="divide-y divide-gray-200 dark:divide-gray-700">
           <div className="space-y-2 pb-8 pt-6 md:space-y-5">
             <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-              Latest
+              Bài viết mới nhất
             </h1>
             <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
               {siteMetadata.description}
@@ -115,7 +76,7 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
                           <div>
                             <h2 className="text-2xl font-bold leading-8 tracking-tight">
                               <a
-                                href={`/blog/${post.slug}`}
+                                href={`/articles/${post.slug}`}
                                 className="text-gray-900 dark:text-gray-100"
                               >
                                 {post.title}
@@ -133,11 +94,11 @@ const Home: React.FC<HomeProps> = ({ posts }) => {
                         </div>
                         <div className="text-base font-medium leading-6">
                           <a
-                            href={`/blog/${post.slug}`}
+                            href={`/articles/${post.slug}`}
                             className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             aria-label={`Read more: "${post.title}"`}
                           >
-                            Read more &rarr;
+                            Xem tiếp &rarr;
                           </a>
                         </div>
                       </div>

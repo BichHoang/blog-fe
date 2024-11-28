@@ -1,9 +1,9 @@
 const headerNavLinks = [
-  { href: '/', title: 'Home' },
-  { href: '/blog', title: 'Blog' },
-  { href: '/tags', title: 'Tags' },
-  { href: '/projects', title: 'Projects' },
-  { href: '/about', title: 'About' },
+  { href: '/', title: 'Trang chủ' },
+  { href: '/blog', title: 'Tin tức' },
+  { href: '/tags', title: 'Chuyên mục' },
+  { href: '/about', title: 'Giới thiệu' },
+  { href: '/questions', title: 'Hỏi đáp' },
 ]
 
 export default headerNavLinks

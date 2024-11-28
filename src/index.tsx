@@ -6,6 +6,7 @@ import App from './App';
 import ErrorPage from './layouts/ErrorPage';
 import Home from './layouts/Home';
 import reportWebVitals from './reportWebVitals';
+import Article from './layouts/Article';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home posts={[]}  />,
+      },
+      {
+        path: "/articles/:slug",
+        element: <Article />,
       },
     ]
   },

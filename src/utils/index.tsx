@@ -47,6 +47,7 @@ export function getRequest<T>(
           data = map(data, item => convertKeysToCamelCase(item.attributes));
         }
         console.log("Data: ", data)
+        console.log("Meta: ", meta)
 
         successCallback(data, meta);
       } else {
@@ -119,3 +120,15 @@ export function deleteRequest(
       errorCallback(error.response?.data?.message || 'An error occurred');
     });
 }
+
+export const formatDate = (date: string, locale: string): string => {
+  return new Date(date).toLocaleDateString(locale, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  });
+};
