@@ -15,6 +15,9 @@ module.exports = {
         13: '3.25rem',
         14: '3.5rem',
       },
+      width: {
+        'fill': '-webkit-fill-available',
+      },
       fontFamily: {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
       },

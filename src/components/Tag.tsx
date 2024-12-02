@@ -12,9 +12,9 @@ const Tag: React.FC<Props> = ({ text }) => {
   return (
     <a
       href={`/tags/${slugify(text)}`}
-      className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+      className="mr-4 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
     >
-      {text.split(' ').join('-')}
+      {text}
     </a>
   );
 };

@@ -1,13 +1,13 @@
-import { Tag, NewsletterSubscribe, Header, Footer, Pagination } from '../components';
+import { Tag as TagLayout, NewsletterSubscribe, Header, Footer, Pagination } from '../components';
 import siteMetadata from '../data/siteMetadata';
 import { useState, useEffect } from 'react';
 import {
   getRequest,
   formatDate,
 } from '../utils/index';
-import { Post, HomeProps, PaginationMeta } from '../types/interfaces';
+import { Post, PaginationMeta } from '../types/interfaces';
 
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC = () => {
   const [data, setData] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -18,7 +18,6 @@ const Home: React.FC<HomeProps> = () => {
 
   useEffect(() => {
     getArticles('articles');
-    console.log('articles', data);
   }, []);
 
   function getArticles(endpoint: string) {
@@ -30,7 +29,6 @@ const Home: React.FC<HomeProps> = () => {
   }
 
   function setPaginationData(data: Post[], meta: PaginationMeta) {
-    console.log('setPaginationData', data);
     setData(data);
     setCurrentPage(meta.current_page);
     setTotalPages(meta.total_pages);
@@ -57,12 +55,12 @@ const Home: React.FC<HomeProps> = () => {
             </p>
           </div>
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-            {!data.length && 'No posts found.'}
+            {!data.length && 'Hiện tại chưa có bài viết nào.'}
             {data.map((post) => {
               return (
-                <li key={post.slug} className="py-12">
+                <li key={`home-${post.slug}`} className="py-12">
                   <article>
-                    <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                    <div className="space-y-2 2xl:grid 2xl:grid-cols-4 2xl:items-baseline 2xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -83,9 +81,9 @@ const Home: React.FC<HomeProps> = () => {
                               </a>
                             </h2>
                             <div className="flex flex-wrap">
-                              {/* {tags.map((tag) => (
-                                <Tag key={tag} text={tag} />
-                              ))} */}
+                              {post.tags.map((tag) => (
+                                <TagLayout key={`home-${tag.id}`} text={tag.name} />
+                              ))}
                             </div>
                           </div>
                           <div className="prose max-w-none text-gray-500 dark:text-gray-400">

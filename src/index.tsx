@@ -7,6 +7,10 @@ import ErrorPage from './layouts/ErrorPage';
 import Home from './layouts/Home';
 import reportWebVitals from './reportWebVitals';
 import Article from './layouts/Article';
+import Tags from './layouts/Tags';
+import Blog from './layouts/Blog';
+import About from './layouts/About';
+import Questions from './layouts/Questions';
 
 const router = createBrowserRouter([
   {
@@ -16,11 +20,31 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home posts={[]}  />,
+        element: <Home  />,
       },
       {
         path: "/articles/:slug",
         element: <Article />,
+      },
+      {
+        path: "/tags",
+        element: <Tags />,
+      },
+      {
+        path: "/tags/:slug",
+        element: <Blog />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/questions",
+        element: <Questions />,
       },
     ]
   },

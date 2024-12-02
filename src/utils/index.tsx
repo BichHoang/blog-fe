@@ -45,6 +45,8 @@ export function getRequest<T>(
         const meta = response.data.meta;
         if (Array.isArray(data)) {
           data = map(data, item => convertKeysToCamelCase(item.attributes));
+        } else if (data.attributes) {
+          data  = convertKeysToCamelCase(data.attributes)
         }
         console.log("Data: ", data)
         console.log("Meta: ", meta)
@@ -121,8 +123,8 @@ export function deleteRequest(
     });
 }
 
-export const formatDate = (date: string, locale: string): string => {
-  return new Date(date).toLocaleDateString(locale, {
+export const formatDate = (date: string, locale: string, option?: any): string => {
+  option = option || {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -130,5 +132,6 @@ export const formatDate = (date: string, locale: string): string => {
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
-  });
+  };
+  return new Date(date).toLocaleDateString(locale, option);
 };
